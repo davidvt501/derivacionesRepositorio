@@ -106,26 +106,23 @@ function buscarSelect()
 	 <div class="header">
 
  <a href="http://www.ucn.cl/" class="image fit"><img src="../../../images/ucnlogo.png" align="right" style="width:100px; height:100px"; alt=""></a>
- <a href="modify_functionariesInterface.php" class="image fit"><img src="../../../assets/images/back-arrow.png" align="left" style="width:90px; height:90px"; alt=""></a>
+ <a href="modify_adminsInterface.php" class="image fit"><img src="../../../assets/images/back-arrow.png" align="left" style="width:90px; height:90px"; alt=""></a>
 </div>
 
 <div class="container">
-  <h2>Agregar funcionario:</h2>
+  <h2>Agregar Administrador:</h2>
   <div class="panel panel-default">
     <div class="panel-body">
       <p>
-        <form name="insert" action="add_functionary.php" method="POST">
+        <form name="insert" action="add_admin.php" method="POST">
       			RUN:
       			<input class="input_rut" type="text" name="run" placeholder="RUN completo sin puntos" oninput="checkRut(this)" maxlength="12" required>
             <br>
            Nombre Completo
       		 <input type="text" name="name" maxlength="100" required><br>
            <br>
-           Telefono
-      			 <input type="text" name="phone" maxlength="20" required><br>
-              <br>
-             Correo
-      			 <input type="text" name="mail" maxlength="50" required><br>
+           <i> La contraseña por defecto es 123, porfavor informe acerca de esto. </i>
+           <br>
       		 <input type="submit" value="Agregar">
       	</form>
       </p>

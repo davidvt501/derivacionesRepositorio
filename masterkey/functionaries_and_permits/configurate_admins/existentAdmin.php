@@ -1,31 +1,18 @@
 <?php
-include '../../includes/db_connect.php';
+include '../../../includes/db_connect.php';
 session_start();
-$oracion=$_SESSION["oracion"];
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
-
-$cod=$_SESSION["cod"];
-$_SESSION["cod"]=$cod;
-
-$run=$_SESSION["run"];
-$_SESSION["run"]=$run;
-
-$cod_program=$_SESSION["cod_program"];
-
-$student_name=$_SESSION["student_name"];
-
-$program=pg_query($db,"SELECT * FROM program where cod_program='$cod_program'");
-echo $program['name'];
-
 ?>
+
+
 <!DOCTYPE html>
  <html lang="en">
  <head>
  <meta charset="utf-8">
  <title>select</title>
- <link rel="stylesheet" type="text/css" href="../../assets/css/funcionarios.css">
- <link rel="stylesheet" type="text/css" href="../../assets/css/boxes.css">
+ <link rel="stylesheet" type="text/css" href="../../../assets/css/funcionarios.css">
+ <link rel="stylesheet" type="text/css" href="../../../assets/css/boxes.css">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -68,25 +55,23 @@ function buscarSelect()
  <body>
 
 
-	 <div class="header">
+   <div class="header">
 
- <a href="http://www.ucn.cl/" class="image fit"><img src="../../images/ucnlogo.png" align="right" style="width:100px; height:100px"; alt=""></a>
-<form action="student_summary.php" method="post">
- <input type="image" src="../../assets/images/back-arrow.png" align="left" style="width:90px; height:90px"; alt="">
- <input type="hidden" value="<?php echo $run?>" name="run">
-</form>
-</div>
+ <a href="http://www.ucn.cl/" class="image fit"><img src="../../../images/ucnlogo.png" align="right" style="width:100px; height:100px"; alt=""></a>
+ <form action="addAdminInterface.php" method="post">
+  <input type="image" src="../../../assets/images/back-arrow.png" align="left" style="width:90px; height:90px"; alt="">
+ </form>
+ </div>
 
-<div class="container">
-  <h2>Exito</h2>
+ <div class="container">
+  <h2>Administrador Existente</h2>
   <div class="panel panel-default">
     <div class="panel-body">
-      <?php echo $oracion;?>
+      <p>Este Administrador ya existe</p>
     </div>
   </div>
-</div>
-</div>
+ </div>
 
 
  </body>
- </html>
+</html>

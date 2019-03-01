@@ -3,6 +3,8 @@ include '../../../includes/db_connect.php';
 session_start();
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
+$sql="SELECT * FROM master_key WHERE campus='$campus' ORDER BY name";
+$result=pg_query($db,$sql);
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -51,7 +53,7 @@ function buscarSelect()
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>
-	/* function checkRut(rut) {
+	function checkRut(rut) {
     // Despejar Puntos
     var valor = rut.value.replace('.','');
     // Despejar Guión
@@ -97,7 +99,7 @@ function buscarSelect()
 
     // Si todo sale bien, eliminar errores (decretar que es válido)
     rut.setCustomValidity('');
-}*/
+}
 	</script>
  </head>
  <body>
@@ -106,32 +108,36 @@ function buscarSelect()
 	 <div class="header">
 
  <a href="http://www.ucn.cl/" class="image fit"><img src="../../../images/ucnlogo.png" align="right" style="width:100px; height:100px"; alt=""></a>
- <a href="modify_functionariesInterface.php" class="image fit"><img src="../../../assets/images/back-arrow.png" align="left" style="width:90px; height:90px"; alt=""></a>
+ <a href="modify_adminsInterface.php" class="image fit"><img src="../../../assets/images/back-arrow.png" align="left" style="width:90px; height:90px"; alt=""></a>
 </div>
 
 <div class="container">
-  <h2>Agregar funcionario:</h2>
+  <h2>Desactivar Administrador:</h2>
   <div class="panel panel-default">
     <div class="panel-body">
-      <p>
-        <form name="insert" action="add_functionary.php" method="POST">
-      			RUN:
-      			<input class="input_rut" type="text" name="run" placeholder="RUN completo sin puntos" oninput="checkRut(this)" maxlength="12" required>
+      <p>Introduzca el RUT del Administrador</p>
+<form onsubmit="return false">
+  <input type="text" id="buscar"><input type="submit" value="Buscar" onclick="buscarSelect()">
+</form>
+  <p>
+    <form method="post" action="delete_admin.php">
+    <select id="soflow-color" name="run" required>
+      <option value="" selected>Seleccione al Administrador:</option>
+              <?php
+          while ($mostrar=pg_fetch_assoc($result)){
+            echo '<option name="run" value="'.$mostrar['run'].'">'.$mostrar['name'].'</option>';
+          }
+        ?>
+            </select>
+            <p> Al proceder, el administrador sera completamente borrado del sistema.</p>
             <br>
-           Nombre Completo
-      		 <input type="text" name="name" maxlength="100" required><br>
-           <br>
-           Telefono
-      			 <input type="text" name="phone" maxlength="20" required><br>
-              <br>
-             Correo
-      			 <input type="text" name="mail" maxlength="50" required><br>
-      		 <input type="submit" value="Agregar">
-      	</form>
-      </p>
+            <button type="submit">Enviar</button>
+          </form>
+  </p>
     </div>
   </div>
 </div>
+
 
 
  </body>

@@ -9,16 +9,22 @@
 <h1>Permisos</h1>
 <?php
 include '../includes/db_connect.php';
+include '../includes/function_ucn.php';
 session_start();
 $_SESSION["run_f"]=$_POST['run'];
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
+$run=$_POST['run'];
+$pass=$_POST['pass'];
 
-$result = pg_query($db,"SELECT * FROM functionary where run='$_POST[run]' AND pass='$_POST[pass]' AND campus='$campus'");
+online_ucn($run,$pass);
+
+$result = pg_query($db,"SELECT * FROM functionary where run='$run' AND pass='$pass' AND campus='$campus'");
 $rows = pg_num_rows($result);
-$res2=pg_query($db,"SELECT * FROM master_key where run='$_POST[run]' AND pass='$_POST[pass]' AND campus='$campus'");
+$res2=pg_query($db,"SELECT * FROM master_key where run='$run' AND pass='$pass' AND campus='$campus'");
 $rows2 = pg_num_rows($res2);
 
+if (online_ucn($run,$pass)==true){
 if ($rows!=0){
 	$result_e = pg_query($db,"SELECT functionality_state FROM functionary where run='$_POST[run]'");
 	$mostrar_e=pg_fetch_assoc($result_e);
@@ -29,11 +35,11 @@ if ($rows!=0){
 	}
 }else if($rows2!=0){
 	header('Location: ../masterkey/masterkeyInterface_selection.php');
+}
 }else{
 	header('Location: ../functionaries/inexistent_functionary.php');
 }
 
-echo 'hola';
 ?>
 </div>
 </body>

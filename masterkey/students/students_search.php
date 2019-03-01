@@ -12,7 +12,7 @@ $carrerData=pg_fetch_assoc($carrer_pg);
 
 $student_pg="SELECT student.name,student.run,carrer_student.cod_carrer as cod_carrer FROM
 student INNER JOIN carrer_student ON carrer_student.run=student.run
-WHERE cod_carrer='$cod'";
+WHERE cod_carrer='$cod' ORDER BY student.name";
 $searchStudents=pg_query($db,$student_pg);
 
 ?>

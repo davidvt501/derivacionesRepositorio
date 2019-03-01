@@ -1,7 +1,6 @@
 <?php
 include '../../includes/db_connect.php';
 session_start();
-$oracion=$_SESSION["oracion"];
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
 
@@ -10,13 +9,6 @@ $_SESSION["cod"]=$cod;
 
 $run=$_SESSION["run"];
 $_SESSION["run"]=$run;
-
-$cod_program=$_SESSION["cod_program"];
-
-$student_name=$_SESSION["student_name"];
-
-$program=pg_query($db,"SELECT * FROM program where cod_program='$cod_program'");
-echo $program['name'];
 
 ?>
 <!DOCTYPE html>
@@ -78,10 +70,10 @@ function buscarSelect()
 </div>
 
 <div class="container">
-  <h2>Exito</h2>
+  <h2>Error</h2>
   <div class="panel panel-default">
     <div class="panel-body">
-      <?php echo $oracion;?>
+      El estudiante ya pertence a este programa.
     </div>
   </div>
 </div>

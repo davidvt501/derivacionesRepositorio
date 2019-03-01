@@ -106,7 +106,7 @@ function buscarSelect()
 <div align="left">
 
       <?php while($mostrarCriteriaSocEm=pg_fetch_assoc($criteriaSocEm)){
-        echo '<input type="checkbox" name="academica[]" value="'.$mostrarCriteriaSocEm['criteria_definition'].'">'.$mostrarCriteriaSocEm['criteria_definition'].' <br>';
+        echo '<input type="checkbox" name="socioEmocional[]" value="'.$mostrarCriteriaSocEm['criteria_definition'].'">'.$mostrarCriteriaSocEm['criteria_definition'].' <br>';
       }
       ?>
     </div>

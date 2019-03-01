@@ -17,7 +17,7 @@ $_SESSION["campus"]=$campus;
       <link rel="stylesheet" href="assets/css/indexstyle.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>
-	function checkRut(rut) {
+	/* function checkRut(rut) {
     // Despejar Puntos
     var valor = rut.value.replace('.','');
     // Despejar Guión
@@ -63,7 +63,7 @@ $_SESSION["campus"]=$campus;
 
     // Si todo sale bien, eliminar errores (decretar que es válido)
     rut.setCustomValidity('');
-}
+} */
 	</script>
 
 </head>

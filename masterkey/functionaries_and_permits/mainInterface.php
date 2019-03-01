@@ -65,6 +65,18 @@ font-size: 5px;
 	</div>
 </div>
 
+<div class="card card-3>
+	<form method="post">
+	</form>
+	<div>
+	<p>Modificar Administradores</p>
+	<form name="empty" action="configurate_admins/modify_adminsInterface.php">
+	<img src="../../assets/images/admin.png" alt="carrera" height="190" width="190">
+	<br> <input type="submit" value="Acceder">
+	</form>
+	</div>
+</div>
+
 
  </body>
  </html>
