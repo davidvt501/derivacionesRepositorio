@@ -7,6 +7,8 @@ $sql_e="SELECT * FROM program WHERE active!=false AND campus='$campus' AND type=
 $result_e=pg_query($db,$sql_e);
 $sql_a="SELECT * FROM program WHERE active!=false AND campus='$campus' AND type='a' ORDER BY name";
 $result_a=pg_query($db,$sql_a);
+$sql_i="SELECT * FROM program WHERE active=false AND campus='$campus' ORDER BY name";
+$result_inactive=pg_query($db,$sql_i);
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -14,6 +16,7 @@ $result_a=pg_query($db,$sql_a);
  <meta charset="utf-8">
  <title>select</title>
  <link rel="stylesheet" type="text/css" href="../../assets/css/funcionarios.css">
+ <link rel="stylesheet" type="text/css" href="../../assets/css/funcionarios2.css">
  <link rel="stylesheet" type="text/css" href="../../assets/css/boxes.css">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -123,6 +126,32 @@ function buscarSelect()
   </div>
 </div>
 
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h2>Reactivar Programa</h2>
+      <i> Si se re-activa un programa, volvera a aparecer dentro del sistema. Pero los permisos deberan agregarse manualmente</i>
+      <p>Seleccione un programa:</p>
+      <form action="reactivate_program.php" method="post">
+      <select id="soflow-color2" name="cod_p" required>
+        <option value="" selected>Seleccione una programa</option>
+        <?php
+    while ($mostrar2=pg_fetch_assoc($result_inactive)){
+      if($mostrar2['type']=='a'){
+        $type='(Programa de Apoyo)';
+      }else if($mostrar2['type']=='e'){
+        $type='(Programa Estudiantil)';
+      }
+      echo '<option name="run" value="'.$mostrar2['cod_program'].'">'.$mostrar2['name'].' - '.$type.'</option>';
+    }
+  ?>
+      </select>
+      <br>
+      <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+</div>
 
  </body>
  </html>

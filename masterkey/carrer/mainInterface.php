@@ -4,7 +4,8 @@ session_start();
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
 
-$result=pg_query($db,"SELECT * FROM carrer WHERE campus='$campus' AND cod_carrer!='000' AND cod_carrer!='001'");
+$result=pg_query($db,"SELECT * FROM carrer WHERE campus='$campus' AND cod_carrer!='000' AND cod_carrer!='001' AND active=true ORDER BY name");
+$result_inactive=pg_query($db,"SELECT * FROM carrer WHERE campus='$campus' AND cod_carrer!='000' AND cod_carrer!='001' AND active=false ORDER BY name");
 
 ?>
 <!DOCTYPE html>
@@ -13,6 +14,8 @@ $result=pg_query($db,"SELECT * FROM carrer WHERE campus='$campus' AND cod_carrer
  <meta charset="utf-8">
  <title>select</title>
  <link rel="stylesheet" type="text/css" href="../../assets/css/funcionarios.css">
+ <link rel="stylesheet" type="text/css" href="../../assets/css/funcionarios2.css">
+
  <link rel="stylesheet" type="text/css" href="../../assets/css/boxes.css">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -101,6 +104,28 @@ function buscarSelect()
           </form>
   </p>
 </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h2>Reactivar Carreras</h2>
+      <i> Si se re-activa una carrera, volvera a aparecer dentro del sistema. Pero los permisos deberan agregarse manualmente</i>
+      <p>Seleccione una carrera:</p>
+      <form action="reactivate_carrer.php" method="post">
+      <select id="soflow-color2" name="cod_c" required>
+        <option value="" selected>Seleccione una Carrera:</option>
+        <?php
+    while ($mostrar=pg_fetch_assoc($result_inactive)){
+      echo '<option name="run" value="'.$mostrar['cod_carrer'].'">'.$mostrar['name'].'</option>';
+    }
+  ?>
+      </select>
+      <br>
+      <button type="submit">Enviar</button>
+      </form>
     </div>
   </div>
 </div>
