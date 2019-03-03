@@ -5,7 +5,7 @@ session_start();
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
 
-$consulta="SELECT * FROM functionary where run='$_POST[run]'";
+$consulta="SELECT * FROM functionary where run='$_POST[run]' AND campus='$campus'";
 
 $con=pg_query($db,$consulta);
 

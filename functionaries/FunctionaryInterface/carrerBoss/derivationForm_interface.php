@@ -61,6 +61,22 @@ function buscarSelect()
 }
 </script>
 
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#check').click(function() {
+      checked = $("input[type=checkbox]:checked").length;
+
+      if(!checked) {
+        alert("Se debe de elegir al menos un indicador.");
+        return false;
+      }
+
+    });
+});
+
+</script>
+
  </head>
  <body>
 
@@ -98,7 +114,7 @@ function buscarSelect()
       <b>Indicadores academicos: </b><br>
       <div align="left">
       <?php while($mostrarCriteriaAcad=pg_fetch_assoc($criteriaAcad)){
-        echo '<input type="checkbox" name="academica[]" value="'.$mostrarCriteriaAcad['criteria_definition'].'">'.$mostrarCriteriaAcad['criteria_definition'].' <br>';
+        echo '<input type="checkbox" name="indicadores[]" value="'.$mostrarCriteriaAcad['criteria_definition'].'">'.$mostrarCriteriaAcad['criteria_definition'].' <br>';
       }
   ?>
 </div>
@@ -106,13 +122,13 @@ function buscarSelect()
 <div align="left">
 
       <?php while($mostrarCriteriaSocEm=pg_fetch_assoc($criteriaSocEm)){
-        echo '<input type="checkbox" name="socioEmocional[]" value="'.$mostrarCriteriaSocEm['criteria_definition'].'">'.$mostrarCriteriaSocEm['criteria_definition'].' <br>';
+        echo '<input type="checkbox" name="indicadores[]" value="'.$mostrarCriteriaSocEm['criteria_definition'].'">'.$mostrarCriteriaSocEm['criteria_definition'].' <br>';
       }
       ?>
     </div>
     Comentario <br>
     <textarea id="confirmationText" class="text" cols="140" rows ="5" name="comment" required placeholder="Comentarios y Observaciones con respecto al estudiante al que se desea derivar."></textarea> <br>
-    <input type="submit" value="Enviar">
+    <input type="submit" value="Enviar" id="check">
     </form>
     </div>
   </div>

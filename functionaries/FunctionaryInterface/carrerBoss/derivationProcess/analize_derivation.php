@@ -17,7 +17,7 @@ $string_datetime=date('d/m/Y H:i:s',$unix_datetime);
 
 //$con=pg_query($db,"INSERT INTO derivation (cod_program,run_student,run_functionary,support) values(202,'$run','$run_f','Hola')");
 
-if (isset($_POST["academica"]) || isset($_POST["socioEmocional"])) {
+if(isset($_POST["indicadores"])){
   $cod=$_SESSION["cod"];
   $run_f=$_SESSION["run_f"];
   $comment=$_POST['comment'];
@@ -26,7 +26,7 @@ if (isset($_POST["academica"]) || isset($_POST["socioEmocional"])) {
   $_SESSION["run_f"]=$run_f;
   $_SESSION["comment"]=$comment;
   $_SESSION["run"]=$run;
-
+}
 $year = date('Y', time());
 
 $prog_e=pg_query($db,"SELECT * FROM program_student where run='$run'");
@@ -45,6 +45,8 @@ $consDat=pg_fetch_assoc($datosEstud);
   echo $_SESSION['prog']=202;
 } */
 
+if($campus=='c'){
+
 if ($cons['cod_program']==301){ //Verifica si es PACE
   if ($consDat['income_year']==$year){
     $_SESSION['prog']=203; //Se deriva a PACE si es primer año
@@ -56,27 +58,22 @@ if ($cons['cod_program']==301){ //Verifica si es PACE
 }else if($year-$consDat['income_year']<5){
   $_SESSION['prog']=202; //Se deriva al AORA
 }else{
-  echo 'No cumple los requisitos necesarios';
-  echo '<a href="../functionaries/carrer_boss_interface.php">Regresar</a>';
-  die();
+  header ('Location: impossible.php'); //No cumple los requisitos
+}
+}else if($campus=='a'){
+  if($cons['cod_program']>=502 && $cons['cod_program']<=505){
+  $_SESSION['prog']=401;
+  }else{
+  header ('Location: impossible.php'); //No cumple los requsiitos
+  }
 }
 
   $criteriosArray=[];
-  if (isset($_POST["academica"]) && (!isset($_POST["socioEmocional"]))){
-    $criteriosArray = $_POST['academica'];
+  if (isset($_POST["indicadores"])){
+    $criteriosArray = $_POST['indicadores'];
     $_SESSION["criteriosArray"]=$criteriosArray;
     header('Location: recap_derivation.php');
-  }else if(isset($_POST["socioEmocional"]) && (!isset($_POST["academica"]))){
-    $criteriosArray = $_POST['socioEmocional'];
-    $_SESSION["criteriosArray"]=$criteriosArray;
-    header('Location: recap_derivation.php');
-  }else if (isset($_POST["academica"]) && isset($_POST["socioEmocional"])){
-    $criteriosArray=array_merge($_POST["academica"],$_POST["socioEmocional"]);
-    $_SESSION["criteriosArray"]=$criteriosArray;
-    header('Location: recap_derivation.php');
-  }
 }else{
-header('Location: noCriteria.php');
+  header('Location: impossible.php');
 }
-
 ?>
