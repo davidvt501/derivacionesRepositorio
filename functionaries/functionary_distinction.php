@@ -19,9 +19,9 @@ $pass=$_POST['pass'];
 
 online_ucn($run,$pass);
 
-$result = pg_query($db,"SELECT * FROM functionary where run='$run' AND pass='$pass' AND campus='$campus'");
+$result = pg_query($db,"SELECT * FROM functionary where run='$run' AND campus='$campus'");
 $rows = pg_num_rows($result);
-$res2=pg_query($db,"SELECT * FROM master_key where run='$run' AND pass='$pass' AND campus='$campus'");
+$res2=pg_query($db,"SELECT * FROM master_key where run='$run' AND campus='$campus'");
 $rows2 = pg_num_rows($res2);
 
 if (online_ucn($run,$pass)==true){ //Comprueba si existe en el sistema de la UCN
@@ -29,16 +29,21 @@ if ($rows!=0){
 	$result_e = pg_query($db,"SELECT functionality_state FROM functionary where run='$_POST[run]'");
 	$mostrar_e=pg_fetch_assoc($result_e);
 	if($mostrar_e['functionality_state']===t){
+		echo 'active';
 		header('Location: ../functionaries/FunctionaryInterface/functionaryInterface_selection.php');
 	}else{
+		echo 'unactive';
 		header('Location: ../functionaries/unactive_functionary.php');
 	}
 }else if($rows2!=0){
+	echo 'master-key';
 	header('Location: ../masterkey/masterkeyInterface_selection.php');
 }else{
+	echo 'no master-key';
 	header('Location: ../functionaries/inexistent_functionary.php');
 }
 }else{
+	echo 'no funcionario en general';
 	header('Location: ../functionaries/inexistent_functionary.php');
 }
 

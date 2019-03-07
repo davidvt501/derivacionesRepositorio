@@ -90,19 +90,5 @@ font-size: 5px;
 		</form>
 		</div>
 	</div>
-
-	<div class="card card-3>
-		<form method="post">
-		</form>
-		<div>
-		<br>
-		<img src="../../assets/images/key.png" alt="carrera" height="190" width="190">
-		<br>
-		Cambiar Contraseña
-		<form name="hola" action="password/change_password.php" method="post">
-		<button type="submit">Ingresar</button>
-		</form>
-		</div>
-	</div>
  </body>
  </html>

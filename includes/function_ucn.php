@@ -11,9 +11,9 @@ function online_ucn($rut,$pass)
 
     if ($ruts == "13.923.083-4" && $pass == "hola") {
       return true;
-    } else if ($ruts == "13.923.083-4" && $pass == "123"){
-      return true;
     } else if ($ruts == "20.670.677-5" && $pass == "123"){
+      return true;
+    } else if ($ruts == "12.256.076-7" && $pass == "123"){
       return true;
     }
 
