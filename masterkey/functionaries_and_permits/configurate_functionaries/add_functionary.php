@@ -15,7 +15,7 @@ if ($rows>0){
   header ("Location: existentFunctionary.php");
 
 }else{
-  $sql="INSERT INTO functionary values('$_POST[run]','$_POST[name]','$_POST[phone]','$_POST[mail]',123,true,'$campus')";
+  $sql="INSERT INTO functionary values('$_POST[run]','$_POST[name]','$_POST[phone]','$_POST[mail]',true,'$campus')";
 
   $result = pg_query($db,$sql);
   header ("Location: success.php");

@@ -121,7 +121,6 @@ function buscarSelect()
            Nombre Completo
       		 <input type="text" name="name" maxlength="100" required><br>
            <br>
-           <i> La contraseña por defecto es 123, porfavor informe acerca de esto. </i>
            <br>
       		 <input type="submit" value="Agregar">
       	</form>

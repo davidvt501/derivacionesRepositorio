@@ -15,7 +15,7 @@ if ($rows>0){
   header ("Location: existentAdmin.php");
 
 }else{
-  $sql="INSERT INTO master_key values('$_POST[run]','123','$campus','$_POST[name]')";
+  $sql="INSERT INTO master_key values('$_POST[run]','$campus','$_POST[name]')";
 
   $result = pg_query($db,$sql);
   header ("Location: success.php");
