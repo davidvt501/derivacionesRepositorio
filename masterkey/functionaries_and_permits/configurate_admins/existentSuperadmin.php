@@ -60,15 +60,14 @@ function buscarSelect()
  <a href="http://www.ucn.cl/" class="image fit"><img src="../../../images/ucnlogo.png" align="right" style="width:100px; height:100px"; alt=""></a>
  <form action="addAdminInterface.php" method="post">
   <input type="image" src="../../../assets/images/back-arrow.png" align="left" style="width:90px; height:90px"; alt="">
-  <input type="hidden" name="run" value="<?php echo $run?>">
  </form>
  </div>
 
  <div class="container">
-  <h2>Administrador/a Creado</h2>
+  <h2>Administrador Existente</h2>
   <div class="panel panel-default">
     <div class="panel-body">
-      <p>El/la Super-Administrador/a u Administrador/a ha sido creado de forma correcta</p>
+      <p>Este Super-Administrador ya existe</p>
     </div>
   </div>
  </div>

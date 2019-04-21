@@ -3,6 +3,8 @@ include '../../includes/db_connect.php';
 session_start();
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
+$run=$_SESSION["run_f"];
+$_SESSION["run"]=$run;
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -69,7 +71,7 @@ font-size: 5px;
 	<form method="post">
 	</form>
 	<div>
-	<p>Modificar Administradores</p>
+	<p>Modificar Administradores /Administradores de Programas</p>
 	<form name="empty" action="configurate_admins/modify_adminsInterface.php">
 	<img src="../../assets/images/admin.png" alt="carrera" height="190" width="190">
 	<br> <input type="submit" value="Acceder">

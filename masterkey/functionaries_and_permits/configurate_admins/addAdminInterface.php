@@ -110,11 +110,12 @@ function buscarSelect()
 </div>
 
 <div class="container">
-  <h2>Agregar Administrador:</h2>
+  <h2>Agregar Super-Administrador:</h2>
   <div class="panel panel-default">
     <div class="panel-body">
       <p>
-        <form name="insert" action="add_admin.php" method="POST">
+        Este administrador tendra control sobre los adminsitradores de cada programa.
+        <form name="insert" action="add_superadmin.php" method="POST">
       			RUN:
       			<input class="input_rut" type="text" name="run" placeholder="RUN completo sin puntos" oninput="checkRut(this)" maxlength="12" required>
             <br>
@@ -128,6 +129,29 @@ function buscarSelect()
     </div>
   </div>
 </div>
+
+<div class="container">
+  <h2>Agregar Administrador de Programa:</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <p>
+        Este administrador tendra control sobre un programa en especifico junto con sus respectivos funcionarios y alumnos. Los permisos se agregan en la seccion permisos de administradores
+        <form name="insert" action="add_admin_p.php" method="POST">
+      			RUN:
+      			<input class="input_rut" type="text" name="run" placeholder="RUN completo sin puntos" oninput="checkRut(this)" maxlength="12" required>
+            <br>
+           Nombre Completo
+      		 <input type="text" name="name" maxlength="100" required><br>
+           <br>
+           <br>
+      		 <input type="submit" value="Agregar">
+
+      	</form>
+      </p>
+    </div>
+  </div>
+</div>
+
 
 
  </body>

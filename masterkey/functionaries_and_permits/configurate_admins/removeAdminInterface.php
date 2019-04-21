@@ -3,7 +3,9 @@ include '../../../includes/db_connect.php';
 session_start();
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
-$sql="SELECT * FROM master_key WHERE campus='$campus' ORDER BY name";
+$run=$_SESSION["run_f"];
+$_SESSION["run"]=$run;
+$sql="SELECT * FROM master_key WHERE campus='$campus' AND run!='$run' ORDER BY name";
 $result=pg_query($db,$sql);
 ?>
 <!DOCTYPE html>

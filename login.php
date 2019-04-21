@@ -69,7 +69,7 @@ $_SESSION["campus"]=$campus;
 </head>
 
 <body>
-
+<?php echo $campus?>
   <form action="functionaries/functionary_distinction.php" method="post">
 	<div class="svgContainer">
 		<div>
@@ -200,8 +200,6 @@ $_SESSION["campus"]=$campus;
 
 
     <script  src="assets/js/loginscript.js"></script>
-
-
 
 
 </body>

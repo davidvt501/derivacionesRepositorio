@@ -9,11 +9,13 @@ function online_ucn($rut,$pass)
     $rutn = substr($rut, 0, strlen($rut) - 1);
     $ruts = number_format($rutn/1.0, 0, ",", ".") . "-" . $dv;
 
-    if ($ruts == "13.923.083-4" && $pass == "hola") {
+    if ($ruts == "13.923.083-4" && $pass == "fun") {
       return true;
-    } else if ($ruts == "20.670.677-5" && $pass == "123"){
+    } else if ($ruts == "20.670.677-5" && $pass == "fun"){
       return true;
-    } else if ($ruts == "12.256.076-7" && $pass == "123"){
+    } else if ($ruts == "11.856.903-2" && $pass == "admin"){
+      return true;
+    } else if ($ruts == "12.256.076-7" && $pass == "admin"){
       return true;
     }
 

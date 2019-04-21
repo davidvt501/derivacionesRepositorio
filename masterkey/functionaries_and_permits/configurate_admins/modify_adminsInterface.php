@@ -3,6 +3,8 @@ include '../../../includes/db_connect.php';
 session_start();
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
+$run=$_SESSION["run_f"];
+$_SESSION["run"]=$run;
 ?>
 <!DOCTYPE html>
  <html lang="en">

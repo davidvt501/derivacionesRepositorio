@@ -61,9 +61,11 @@ if ($cons['cod_program']==301){ //Verifica si es PACE
   header ('Location: impossible.php'); //No cumple los requisitos
 }
 }else if($campus=='a'){
-  if($cons['cod_program']>=502 && $cons['cod_program']<=505){
+  if($cons['cod_program']==502){
+  $_SESSION['prog']=402;
+}else if($cons['cod_program']>=503 && $cons['cod_program']<=505){
   $_SESSION['prog']=401;
-  }else{
+}else{
   header ('Location: impossible.php'); //No cumple los requsiitos
   }
 }
