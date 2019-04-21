@@ -23,6 +23,7 @@ $result = pg_query($db,"SELECT * FROM functionary where run='$run' AND campus='$
 $rows = pg_num_rows($result);
 $res2=pg_query($db,"SELECT * FROM master_key where run='$run' AND campus='$campus'");
 $rows2 = pg_num_rows($res2);
+$res3=pg_query($db,"SELECT * FROM program_admin where='$run' AND campus='$campus'");
 
 if (online_ucn($run,$pass)==true){ //Comprueba si existe en el sistema de la UCN
 if ($rows!=0){

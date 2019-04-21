@@ -9,6 +9,8 @@ $run=$_SESSION["run"];
 $cod=$_POST["cod"];
 $_SESSION["run_f"]=$run;
 $sql="SELECT * FROM permits_f where run='$run' AND code='$cod'";
+$campus=$_SESSION["campus"];
+$_SESSION["campus"]=$campus;
 
 $exe=pg_query($db,$sql);
 

@@ -5,6 +5,8 @@ $cod_program=$_POST["cod"];
 $_SESSION["cod"]=$cod_program;
 $run=$_SESSION["run"];
 $_SESSION["run"]=$run;
+$campus=$_SESSION["campus"];
+$_SESSION["campus"]=$campus;
  ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -12,7 +14,7 @@ $_SESSION["run"]=$run;
  <meta charset="utf-8">
  <title>select</title>
  <link rel="stylesheet" type="text/css" href="../../../assets/css/funcionarios.css">
- <link rel="stylesheet" type="text/css" href="../../../assets/css/boxes.css">
+ <link rel="stylesheet" type="text/css" href="../../assets/css/boxes_<?php echo $campus ?>.css">
  <style>
 br {
 display: block;
