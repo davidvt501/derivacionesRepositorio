@@ -15,7 +15,7 @@ $_SESSION["cod"]=$cod;
  <meta charset="utf-8">
  <title>select</title>
  <link rel="stylesheet" type="text/css" href="../../../assets/css/funcionarios.css">
- <link rel="stylesheet" type="text/css" href="../../assets/css/boxes_<?php echo $campus ?>.css">
+ <link rel="stylesheet" type="text/css" href="../../../assets/css/boxes_<?php echo $campus ?>.css">
  <style>
 br {
 display: block;
