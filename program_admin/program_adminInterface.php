@@ -8,10 +8,6 @@ $_SESSION["campus"]=$campus;
 $code=$_SESSION["code"];
 $_SESSION["code"]=$code;
 
-$sql_carrer="SELECT * FROM permits_f where run='$run' AND permisson_state!=false AND permisson_type='c'";
-		$result=pg_query($db,$sql_carrer);
-$sql_program="SELECT * FROM permits_f where run='$run' AND permisson_state!=false AND permisson_type='p'";
-$result2=pg_query($db,$sql_program);
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -48,9 +44,6 @@ font-size: 5px;
    </form>
  <a href="http://www.ucn.cl/" class="image fit"><img src="../images/ucnlogo.png" align="right" style="width:100px; height:100px"; alt=""></a>
 </div>
-<div class="container">
-  <h2>Prueba</h2>
-</div>
 
 	<div class="card card-1>
 		<form method="post">
@@ -68,7 +61,7 @@ font-size: 5px;
 		<form method="post">
 		</form>
 		<div>
-		<form name="hola" action="carrerBoss/carrerInterface_selection.php" method="post">
+		<form name="hola" action="modify_functionariesInterface.php" method="post">
 		<img src="../assets/images/modify_employees.png" alt="carrera" height="190" width="190">
 		<p>Modificar funcionarios del programa</p>
 		<input type="submit" value="Acceder">

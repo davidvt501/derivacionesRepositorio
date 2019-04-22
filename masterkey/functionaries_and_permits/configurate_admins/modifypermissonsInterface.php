@@ -62,7 +62,7 @@ function buscarSelect()
 </div>
 
 <div class="container">
-  <h2>NOMBRE PROGRAMA:</h2>
+  <h2>Modificar Permisos:</h2>
   <div class="panel panel-default">
     <div class="panel-body">
     <!---<?php echo '<img src="../../assets/images/'.$cod.'.png" alt="Alt" height="140" width="140">';?>--->

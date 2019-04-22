@@ -80,12 +80,20 @@ function buscarSelect()
     </div>
     <br>
     <div>
-      <p> Remover administrador de programa: </p>
+      <p> Agregar administrador a programa: </p>
       <form action="action_process.php" method="post">
       <select id="soflow-color" name="cod_program" required>
         <option value="" selected>Seleccione un programa</otpion>
           <?php
-          $conNot_permissons=pg_query($db,"SELECT * FROM ")
+          $conProgram=pg_query($db,"SELECT * FROM program WHERE campus='$campus' AND type='a'");
+          while ($program=pg_fetch_assoc($conProgram)){
+            if($program['type']=='e'){
+              $type=' Tipo - Estudiantil';
+            }else if($program['type']=='a'){
+              $type=' Tipo - Apoyo';
+            }
+          echo '<option name="cod" value="'.$program['cod_program'].'">'.$program['name'].'</option>';
+          }
           ?>
           <input type="hidden" value="a" name="action">
       </select>
@@ -95,11 +103,19 @@ function buscarSelect()
     </div>
     <br>
     <div>
-      <p> Agregar administrador a programa: </P>
+      <p> Remover administrador de programa: </P>
         <form action="action_process.php" method="post">
           <select name="cod_program" id="soflow-color" required>
             <option value="" selected>Seleccione algun programa</P>
             <?php
+            $conPermissons=pg_query($db,"SELECT program.name as program_name, program.cod_program as cod,
+              program.type as type FROM
+              program INNER JOIN permits_a ON program.cod_program=permits_a.cod_program
+              WHERE permits_a.run='$run'");
+              while ($permissons=pg_fetch_assoc($conPermissons)){
+
+                echo '<option name="cod" value="'.$permissons['cod'].'">'.$permissons['program_name'].'</option>';
+              }
             ?>
             <input type="hidden" name="action" value="r">
           </select>
