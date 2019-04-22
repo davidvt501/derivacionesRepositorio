@@ -135,7 +135,8 @@ function buscarSelect()
   <div class="panel panel-default">
     <div class="panel-body">
       <p>
-        Este administrador tendra control sobre un programa en especifico junto con sus respectivos funcionarios y alumnos. Los permisos se agregan en la seccion permisos de administradores
+        Este administrador tendra control sobre un programa en especifico junto con sus respectivos funcionarios y alumnos.
+        <br> Los permisos se deberan de agregar en la seccion de permisos
         <form name="insert" action="add_admin_p.php" method="POST">
       			RUN:
       			<input class="input_rut" type="text" name="run" placeholder="RUN completo sin puntos" oninput="checkRut(this)" maxlength="12" required>

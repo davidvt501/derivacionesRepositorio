@@ -23,7 +23,8 @@ $result = pg_query($db,"SELECT * FROM functionary where run='$run' AND campus='$
 $rows = pg_num_rows($result);
 $res2=pg_query($db,"SELECT * FROM master_key where run='$run' AND campus='$campus'");
 $rows2 = pg_num_rows($res2);
-$res3=pg_query($db,"SELECT * FROM program_admin where='$run' AND campus='$campus'");
+$res3=pg_query($db,"SELECT * FROM program_admin where run='$run' AND campus='$campus'");
+$rows3= pg_num_rows($res3);
 
 if (online_ucn($run,$pass)==true){ //Comprueba si existe en el sistema de la UCN
 if ($rows!=0){
@@ -39,12 +40,21 @@ if ($rows!=0){
 }else if($rows2!=0){
 	echo 'master-key';
 	header('Location: ../masterkey/masterkeyInterface_selection.php');
+}else if($rows3!=0){
+	$resPermissons=pg_query($db,"SELECT * FROM permits_a WHERE run='$run'");
+	$rowsP=pg_num_rows($resPermissons);
+	if ($rowsP!=0){
+		$Permissons=pg_fetch_assoc($resPermissons);
+		$code=$Permissons['cod_program'];
+		$_SESSION["code"]=$code;
+		header('Location: ../program_admin/program_adminInterface.php');
+	}else{
+		header('Location: ../functionaries/inexistent_permissons.php');
+	}
 }else{
-	echo 'no master-key';
 	header('Location: ../functionaries/inexistent_functionary.php');
 }
 }else{
-	echo 'no funcionario en general';
 	header('Location: ../functionaries/inexistent_functionary.php');
 }
 

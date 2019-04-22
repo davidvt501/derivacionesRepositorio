@@ -7,6 +7,8 @@ $run=$_SESSION["run_f"];
 $_SESSION["run"]=$run;
 $sql="SELECT * FROM master_key WHERE campus='$campus' AND run!='$run' ORDER BY name";
 $result=pg_query($db,$sql);
+$sql2="SELECT * FROM program_admin WHERE campus='$campus' AND run!='$run' ORDER BY name";
+$result2=pg_query($db,$sql2);
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -114,6 +116,33 @@ function buscarSelect()
 </div>
 
 <div class="container">
+  <h2>Desactivar Super-Administrador:</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <p>Introduzca el RUT del Administrador</p>
+<form onsubmit="return false">
+  <input type="text" id="buscar"><input type="submit" value="Buscar" onclick="buscarSelect()">
+</form>
+  <p>
+    <form method="post" action="delete_superadmin.php">
+    <select id="soflow-color" name="run" required>
+      <option value="" selected>Seleccione al Administrador:</option>
+              <?php
+          while ($mostrar=pg_fetch_assoc($result)){
+            echo '<option name="run" value="'.$mostrar['run'].'">'.$mostrar['name'].'</option>';
+          }
+        ?>
+            </select>
+            <p> Al proceder, el administrador sera completamente borrado del sistema.</p>
+            <br>
+            <button type="submit">Enviar</button>
+          </form>
+  </p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
   <h2>Desactivar Administrador:</h2>
   <div class="panel panel-default">
     <div class="panel-body">
@@ -126,8 +155,8 @@ function buscarSelect()
     <select id="soflow-color" name="run" required>
       <option value="" selected>Seleccione al Administrador:</option>
               <?php
-          while ($mostrar=pg_fetch_assoc($result)){
-            echo '<option name="run" value="'.$mostrar['run'].'">'.$mostrar['name'].'</option>';
+          while ($mostrar2=pg_fetch_assoc($result2)){
+            echo '<option name="run" value="'.$mostrar2['run'].'">'.$mostrar2['name'].'</option>';
           }
         ?>
             </select>

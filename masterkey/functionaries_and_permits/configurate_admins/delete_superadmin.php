@@ -7,8 +7,7 @@ $run=$_POST['run'];
 $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
 
-$senAdmin=pg_query($db,"DELETE FROM program_admin WHERE run='$run'");
-$perAdmin=pg_query($db,"DELETE FROM permits_a WHERE run='$run'")
+$senAdmin=pg_query($db,"DELETE FROM master_key WHERE run='$run'");
  ?>
  <!DOCTYPE html>
   <html lang="en">

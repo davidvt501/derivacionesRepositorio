@@ -47,7 +47,7 @@ font-size: 5px;
 	<form method="post">
 	</form>
 	<div>
-	<p>Agregar Administradores</p>
+	<p>Agregar Administradores / Super-Administradores</p>
 	<form name="empty" action="addAdminInterface.php">
 	<img src="../../../assets/images/add_admin.png" alt="carrera" height="190" width="190">
 	<br> <input type="submit" value="Acceder">
@@ -59,7 +59,7 @@ font-size: 5px;
 	<form method="post">
 	</form>
 	<div>
-	<p>Eliminar Administradores</p>
+	<p>Eliminar Administradores / Super-Administradores</p>
 	<form name="empty" action="removeAdminInterface.php">
 	<img src="../../../assets/images/remove_admin.png" alt="carrera" height="190" width="190">
 	<br> <input type="submit" value="Acceder">
@@ -67,6 +67,17 @@ font-size: 5px;
 	</div>
 </div>
 
+<div class="card card-3>
+	<form method="post">
+	</form>
+	<div>
+	<p>Modificar permisos de Administradores</p>
+	<form name="empty" action="modifypermissonsInterface.php">
+	<img src="../../../assets/images/modify_admin.png" alt="carrera" height="190" width="190">
+	<br> <input type="submit" value="Acceder">
+	</form>
+	</div>
+</div>
 
 
  </body>

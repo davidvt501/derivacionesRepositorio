@@ -69,7 +69,6 @@ $_SESSION["campus"]=$campus;
 </head>
 
 <body>
-<?php echo $campus?>
   <form action="functionaries/functionary_distinction.php" method="post">
 	<div class="svgContainer">
 		<div>
