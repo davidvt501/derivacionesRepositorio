@@ -5,6 +5,30 @@ $campus=$_SESSION["campus"];
 $_SESSION["campus"]=$campus;
 $code=$_SESSION["code"];
 $_SESSION["code"]=$code;
+
+if ($campus=='a'){
+  if ($code==402){
+    $code_student_pre[1]=502;
+    $code_student=implode(", ", $code_student_pre);
+  }else if($code==401){
+    $code_student_pre[1]=503;
+    $code_student_pre[2]=504;
+    $code_student_pre[3]=505;
+    $code_student=implode(", ", $code_student_pre);
+  }
+}else if ($campus=='c'){
+  if ($code==201){
+    $code_student_pre[1]=302;
+    $code_student_pre[2]=303;
+    $code_student_pre[3]=304;
+    $code_student_pre[4]=305;
+    $code_student=implode(", ", $code_student_pre);
+  }else if($code=203){
+    $code_student_pre[1]=301;
+    $code_student=implode(", ", $code_student_pre);
+  }
+}
+
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -96,58 +120,51 @@ table.blueTable tfoot .links a{
 
 
 <div class="container">
-  <h2>Modificar Funcionarios:</h2>
+  <h2>Modificar Estudiantes:</h2>
   <div class="panel panel-default">
     <div class="panel-body">
     <!---<?php echo '<img src="../../assets/images/'.$cod.'.png" alt="Alt" height="140" width="140">';?>--->
-      <b> Agregar funcionarios </b>
-      <br>
-        <i>Al agregar funcionarios mediante esta interfaz, seran agregados por primera vez al sistema y consecutivamente a este programa.</i>
-        <i>Para agregar funcionarios ya existentes porfavor comunicarse con el super-administrador</i>
+        <b> Agregar estudiantes: </b>
         <br>
-        <form name="insert" action="add_functionary.php" method="POST">
-      			RUN:
-      			<input class="input_rut" type="text" name="run" placeholder="RUN completo sin puntos" oninput="checkRut(this)" maxlength="12" required>
-            <br>
-           Nombre Completo
-      		 <input type="text" name="name" maxlength="100" required><br>
-           <br>
-           Telefono
-      			 <input type="text" name="phone" maxlength="20" required><br>
-              <br>
-             Correo
-      			 <input type="text" name="mail" maxlength="50" required><br>
-      		 <input type="submit" value="Agregar">
-      	</form>
-        <br>
-        <b> Remover funcionario </b>
         <table class="blueTable">
           <thead align="center">
             <tr>
-            <th>Run</th>
+              <th></th>
             <th>Nombre</th>
-            <th>Remover</th>
+            <th></th>
             </tr>
           </thead>
-          <tbody>
+
               <?php
-              $conFunctionaries=pg_query($db,"SELECT permits_f.*,functionary.name as functionary_name FROM permits_f
-                INNER JOIN functionary ON functionary.run=permits_f.run where code='$code'");
-              while($mostrar=pg_fetch_assoc($conFunctionaries)){
-                echo '<td>'.$mostrar['run'].'</td>';
-                echo '<td>'.$mostrar['functionary_name'].'</td>';
-                echo ' <td>
-                <form action="remove_functionary.php" method="post">
-                <input type="hidden"  name="run" value="'.$mostrar['run'].'">
-                <input type="hidden"  name="code_remove" value="'.$code.'">
-                <input type="submit" value="Remover"></input>
+              $conStudents=pg_query($db,"SELECT * FROM carrer WHERE campus='$campus'");
+              while($mostrar=pg_fetch_assoc($conStudents)){
+                echo '<tbody>';
+                echo '<td><img src="../assets/images/'.$mostrar['cod_carrer'].'.png" height="50" width="50" alt="Icono"> </td>';
+                echo '<td>'.$mostrar['name'].'</td>';
+                echo '<td>
+                <form action="#" method="post">
+                <input type="submit" value="Revisar">
                 </form>
-                </td>
-                ';
-              }
+                </td>';
+                echo '</tbody>';
+                 }
               ?>
-            </tbody>
           </table>
+          <br>
+          <b> Remover alumnos </b>
+          <br>
+          <?php
+          $searchStudents=pg_query($db,"SELECT student.*,carrer.name as carrer_name,program.name as program_name,program.cod_program as cod_program
+          FROM student INNER JOIN carrer_student ON carrer_student.run=student.run
+          INNER JOIN carrer ON carrer_student.cod_carrer
+          =carrer.cod_carrer INNER JOIN program_student ON program_student.run=student.run
+          INNER JOIN program ON program.cod_program=program_student.cod_program
+          WHERE program_student.cod_program IN ($code_student)");
+          while($mostrar2=pg_fetch_assoc($searchStudents)){
+            echo $mostrar2['name'];
+            echo $mostrar2['carrer_name'];
+          }
+          ?>
     </div>
   </div>
 </div>

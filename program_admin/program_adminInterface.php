@@ -49,7 +49,7 @@ font-size: 5px;
 		<form method="post">
 		</form>
 		<div>
-		<form name="hola" action="carrerBoss/carrerInterface_selection.php" method="post">
+		<form name="hola" action="modify_studentsInterface.php" method="post">
 		<img src="../assets/images/students.png" alt="carrera" height="190" width="190">
 		<p>Modificar estudiantes del programa</p>
 		<input type="submit" value="Acceder">

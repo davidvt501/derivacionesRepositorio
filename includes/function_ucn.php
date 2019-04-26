@@ -19,6 +19,8 @@ function online_ucn($rut,$pass)
       return true;
     } else if ($ruts == "11.111.111-1" && $pass == "pace"){
       return true;
+    } else if ($ruts == "22.222.222-2" && $pass == "pace"){
+      return true;
     }
 
     $url = 'https://online.ucn.cl/onlineucn/Servicio.asp';
