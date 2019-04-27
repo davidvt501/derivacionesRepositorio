@@ -142,8 +142,9 @@ table.blueTable tfoot .links a{
                 echo '<td><img src="../assets/images/'.$mostrar['cod_carrer'].'.png" height="50" width="50" alt="Icono"> </td>';
                 echo '<td>'.$mostrar['name'].'</td>';
                 echo '<td>
-                <form action="#" method="post">
+                <form action="search_studentsInterface.php" method="post">
                 <input type="submit" value="Revisar">
+                <input type="hidden" name="cod_carrer" value="'.$mostrar['cod_carrer'].'">
                 </form>
                 </td>';
                 echo '</tbody>';
