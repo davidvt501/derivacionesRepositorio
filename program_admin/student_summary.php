@@ -36,6 +36,7 @@ student INNER JOIN carrer_student ON carrer_student.run=student.run INNER JOIN c
 WHERE student.run='$run'";
 $searchStudents=pg_query($db,$student_pg);
 $mostrar=pg_fetch_assoc($searchStudents);
+$conProgram=pg_query($db,"SELECT * from program WHERE campus='$campus' AND type='e' AND cod_program IN ($code_student) ORDER BY name");
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -133,8 +134,32 @@ table.blueTable tfoot .links a{
         Carrera: <?php echo $mostrar['name'];?> <br>
         Año de Ingreso: <?php echo $mostrar['income_year'];?>
         <br>
+        <br>
+        <b> Agregar alumno a programa: </b>
+        <form action="addStudent.php" method="post">
+        <select id="soflow-color" name="cod_program" required>
+          <option value="" selected>Seleccione un programa</otpion>
+            <?php
+              while ($program=pg_fetch_assoc($conProgram)){
+                echo '<option value="'.$program['cod_program'].'">'.$program['name'].'</option>';
+              }
+
+            ?>
+            <input type="hidden" value="<?php echo $run;?>" name="run">
+            <input type="hidden" value="a" name="action">
+        </select>
+        <br>
+        <button type="submit">Agregar</button>
+      </form>
         <b> Programas a los que pertenece </b>
         <br>
+        <table class="blueTable">
+          <thead align="center">
+            <tr>
+              <th>Nombre</th>
+            <th></th>
+            </tr>
+          </thead>
         <?php
         $searchStudents=pg_query($db,"SELECT student.*,carrer.name as carrer_name,program.name as program_name,program.cod_program as cod_program
         FROM student INNER JOIN carrer_student ON carrer_student.run=student.run
@@ -143,7 +168,16 @@ table.blueTable tfoot .links a{
         INNER JOIN program ON program.cod_program=program_student.cod_program
         WHERE program_student.cod_program IN ($code_student) AND student.run='$run'");
         while($mostrar2=pg_fetch_assoc($searchStudents)){
-          echo $mostrar2['program_name'];
+          echo '<tbody>';
+          echo '<td>'.$mostrar2['program_name'].'</td>';
+          echo '<td>
+          <form action="remove_student_from_program.php" method="post">
+          <input type="hidden" name="code_remove" value="'.$mostrar2['cod_program'].'">
+          <input type="hidden" name="run" value="'.$run.'">
+          <input type="submit" value="Remover">
+          </form>
+          </td>';
+          echo '</tbody>';
  }
         ?>
     </div>

@@ -94,6 +94,23 @@ table.blueTable tfoot .links a{
   border-radius: 5px;
 }
 </style>
+<script>
+function buscarSelect()
+{	// creamos un variable que hace referencia al select
+	var select=document.getElementById("soflow-color");
+	// obtenemos el valor a buscar
+	var buscar=document.getElementById("buscar").value;
+	// recorremos todos los valores del select
+	for(var i=1;i<select.length;i++)
+	{
+		if(select.options[i].value==buscar)
+		{
+			// seleccionamos el valor que coincide
+			select.selectedIndex=i;
+		}
+	}
+}
+</script>
  </head>
  <body>
 
