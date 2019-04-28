@@ -124,7 +124,7 @@ table.blueTable tfoot .links a{
   <div class="panel panel-default">
     <div class="panel-body">
     <!---<?php echo '<img src="../../assets/images/'.$cod.'.png" alt="Alt" height="140" width="140">';?>--->
-        <b> Agregar estudiantes: </b>
+        <b> Elegir carrera: </b>
         <br>
         <table class="blueTable">
           <thead align="center">
@@ -136,7 +136,7 @@ table.blueTable tfoot .links a{
           </thead>
 
               <?php
-              $conStudents=pg_query($db,"SELECT * FROM carrer WHERE campus='$campus'");
+              $conStudents=pg_query($db,"SELECT * FROM carrer WHERE campus='$campus' ORDER BY name");
               while($mostrar=pg_fetch_assoc($conStudents)){
                 echo '<tbody>';
                 echo '<td><img src="../assets/images/'.$mostrar['cod_carrer'].'.png" height="50" width="50" alt="Icono"> </td>';
@@ -151,10 +151,7 @@ table.blueTable tfoot .links a{
                  }
               ?>
           </table>
-          <br>
-          <b> Remover alumnos </b>
-          <br>
-          <?php
+          <?php /*
           $searchStudents=pg_query($db,"SELECT student.*,carrer.name as carrer_name,program.name as program_name,program.cod_program as cod_program
           FROM student INNER JOIN carrer_student ON carrer_student.run=student.run
           INNER JOIN carrer ON carrer_student.cod_carrer
@@ -164,7 +161,7 @@ table.blueTable tfoot .links a{
           while($mostrar2=pg_fetch_assoc($searchStudents)){
             echo $mostrar2['name'];
             echo $mostrar2['carrer_name'];
-          }
+          }*/
           ?>
     </div>
   </div>

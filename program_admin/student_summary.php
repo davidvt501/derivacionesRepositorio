@@ -8,8 +8,31 @@ $_SESSION["code"]=$code;
 
 $run=$_POST["run"];
 
-$student_pg="SELECT student.name as student_name,student.run,carrer_student.cod_carrer as cod_carrer FROM
-student INNER JOIN carrer_student ON carrer_student.run=student.run
+if ($campus=='a'){
+  if ($code==402){
+    $code_student_pre[1]=502;
+    $code_student=implode(", ", $code_student_pre);
+  }else if($code==401){
+    $code_student_pre[1]=503;
+    $code_student_pre[2]=504;
+    $code_student_pre[3]=505;
+    $code_student=implode(", ", $code_student_pre);
+  }
+}else if ($campus=='c'){
+  if ($code==201){
+    $code_student_pre[1]=302;
+    $code_student_pre[2]=303;
+    $code_student_pre[3]=304;
+    $code_student_pre[4]=305;
+    $code_student=implode(", ", $code_student_pre);
+  }else if($code=203){
+    $code_student_pre[1]=301;
+    $code_student=implode(", ", $code_student_pre);
+  }
+}
+
+$student_pg="SELECT student.name as student_name,student.run,student.income_year,carrer.name,carrer_student.cod_carrer as cod_carrer FROM
+student INNER JOIN carrer_student ON carrer_student.run=student.run INNER JOIN carrer ON carrer.cod_carrer=carrer_student.cod_carrer
 WHERE student.run='$run'";
 $searchStudents=pg_query($db,$student_pg);
 $mostrar=pg_fetch_assoc($searchStudents);
@@ -107,7 +130,22 @@ table.blueTable tfoot .links a{
   <h2><?php echo $mostrar['student_name']?>:</h2>
   <div class="panel panel-default">
     <div class="panel-body">
-        Carrera: 
+        Carrera: <?php echo $mostrar['name'];?> <br>
+        Año de Ingreso: <?php echo $mostrar['income_year'];?>
+        <br>
+        <b> Programas a los que pertenece </b>
+        <br>
+        <?php
+        $searchStudents=pg_query($db,"SELECT student.*,carrer.name as carrer_name,program.name as program_name,program.cod_program as cod_program
+        FROM student INNER JOIN carrer_student ON carrer_student.run=student.run
+        INNER JOIN carrer ON carrer_student.cod_carrer
+        =carrer.cod_carrer INNER JOIN program_student ON program_student.run=student.run
+        INNER JOIN program ON program.cod_program=program_student.cod_program
+        WHERE program_student.cod_program IN ($code_student) AND student.run='$run'");
+        while($mostrar2=pg_fetch_assoc($searchStudents)){
+          echo $mostrar2['program_name'];
+ }
+        ?>
     </div>
   </div>
 </div>

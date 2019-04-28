@@ -12,6 +12,9 @@ $student_pg="SELECT student.name,student.run,carrer_student.cod_carrer as cod_ca
 student INNER JOIN carrer_student ON carrer_student.run=student.run
 WHERE cod_carrer='$cod_carrer' ORDER BY student.name";
 $searchStudents=pg_query($db,$student_pg);
+
+$carrer_pg=pg_query($db,"SELECT * FROM carrer WHERE cod_carrer='$cod_carrer'");
+$carrerData=pg_fetch_assoc($carrer_pg);
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -103,7 +106,7 @@ table.blueTable tfoot .links a{
 
 
 <div class="container">
-  <h2>Modificar Estudiantes:</h2>
+  <h2><?php echo $carrerData['name'];?></h2>
   <div class="panel panel-default">
     <div class="panel-body">
         <?php echo '<img src="../assets/images/'.$_POST["cod_carrer"].'.png" alt="Alt" height="140" width="140">';?>
