@@ -107,7 +107,7 @@ table.blueTable tfoot .links a{
   <h2><?php echo $mostrar['student_name']?>:</h2>
   <div class="panel panel-default">
     <div class="panel-body">
-        Hola
+        Carrera: 
     </div>
   </div>
 </div>
